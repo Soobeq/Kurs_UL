@@ -1,3 +1,5 @@
+// V2
+
 (function (global) {
 	var mapArray;
 
@@ -32,13 +34,13 @@
   	return global.UAM.aircrafts[global.UAM.aircrafts.length-1];
     }; // OK
 
-	//	2	///////////////////////////////////////////////////////////////////////////////////////
+	//	2 	///////////////////////////////////////////////////////////////////////////////////////
   
     global.UAM.removeAircraft = function (aircraftObj) {
       
 	var i = global.UAM.aircrafts.indexOf(aircraftObj);
-	if(i > -1)
-		global.UAM.aircrafts.splice(i,1);
+	if(i > -1) global.UAM.aircrafts.splice(i,1);
+   
     }; // OK
 
 	//	3	///////////////////////////////////////////////////////////////////////////////////////	
@@ -46,35 +48,45 @@
     global.UAM.addWorkToAircraft = function(aircraftObj, name, timeToExecute) {
        
 	var i = global.UAM.aircrafts.indexOf(aircraftObj);
-	
-	global.UAM.aircrafts[i].services.push({ name: name, timeToExecute: timeToExecute });
+	global.UAM.aircrafts[i].services.push(
+        { 
+            name: name, 
+            timeToExecute: timeToExecute 
+        });
 
     }; // OK
 
 	//	4	////////////////////////////////////////////////////////////////////////////////////////
   
-    global.UAM.reduceTimeToExecute = function(obj , time) {
+    global.UAM.reduceTimeToExecute = function(aircraftObj, time) {
+	
+		if(aircraftObj.services != null)
 		
-		
-		if(obj.services != null)
-		
-		for(var i=0; i < obj.services.length; i++)
+		for(var i=0; i < aircraftObj.services.length; i++)
 			{		
-			obj.services[i].timeToExecute-=time;
+			aircraftObj.services[i].timeToExecute-=time;
 			}
-
-
     }; // OK
 	
 	//	5	/////////////////////////////////////////////////////////////////////////////////////////////
     
     global.UAM.getAircraftsForRepairs = function(maxTimeToExecute) {
         
-		var i = global.UAM.aircrafts.indexOf(aircraftObj);
-		global.UAM.aircrafts[i].services.push({timeToExecute: timeToExxecute });
-		
-		
-    }; // ?
+    var TAB = [];
+        
+        global.UAM.aircrafts.forEach(function(aircraft){ 
+           if(aircraft.services != null){
+               for(var i=0; i <= aircraft.services.length-1; i++){
+                   if(aircraft.services[i].timeToExecute <= maxTimeToExecute){
+                       TAB.push(aircraft);
+                       break;
+                       }
+                   }
+               }
+        }); // end forEach
+        return TAB;
+
+    }; // 
 
 }(window));
 
