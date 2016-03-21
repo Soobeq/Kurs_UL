@@ -20,27 +20,61 @@
         timeToExecute: 120
     });
     
-    //////////////////////////////////////////////////////////////////////////////////////
+    //	1	////////////////////////////////////////////////////////////////////////////////////
 
-    global.UAM.addAircraft = function (newAircraftCode) {
-        // function should return new aircraft object
-    };
+   global.UAM.addAircraft = function (newAircraftCode) {
+  
+	global.UAM.aircrafts.push({
+        code: newAircraftCode ,
+        services: []
+    	});
+    
+  	return global.UAM.aircrafts[global.UAM.aircrafts.length-1];
+    }; // OK
 
+	//	2	///////////////////////////////////////////////////////////////////////////////////////
+  
     global.UAM.removeAircraft = function (aircraftObj) {
-        // !!!
-    };
+      
+	var i = global.UAM.aircrafts.indexOf(aircraftObj);
+	if(i > -1)
+		global.UAM.aircrafts.splice(i,1);
+    }; // OK
 
-    global.UAM.addWorkToAircraft = function(aircraftObj, name, timeToExxecute) {
-        // !!!
-    };
-        
-    global.UAM.reduceTimeToExecute = function(time) {
-        // !!!
-    };
+	//	3	///////////////////////////////////////////////////////////////////////////////////////	
+	
+    global.UAM.addWorkToAircraft = function(aircraftObj, name, timeToExecute) {
+       
+	var i = global.UAM.aircrafts.indexOf(aircraftObj);
+	
+	global.UAM.aircrafts[i].services.push({ name: name, timeToExecute: timeToExecute });
+
+    }; // OK
+
+	//	4	////////////////////////////////////////////////////////////////////////////////////////
+  
+    global.UAM.reduceTimeToExecute = function(obj , time) {
+		
+		
+		if(obj.services != null)
+		
+		for(var i=0; i < obj.services.length; i++)
+			{		
+			obj.services[i].timeToExecute-=time;
+			}
+
+
+    }; // OK
+	
+	//	5	/////////////////////////////////////////////////////////////////////////////////////////////
     
     global.UAM.getAircraftsForRepairs = function(maxTimeToExecute) {
-        // !!!
-    };
+        
+		var i = global.UAM.aircrafts.indexOf(aircraftObj);
+		global.UAM.aircrafts[i].services.push({timeToExecute: timeToExxecute });
+		
+		
+    }; // ?
 
 }(window));
 
