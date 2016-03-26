@@ -16,6 +16,7 @@ app.get('/today', function (req, res) {
 });
 
 //POST /numbers should save number for later
+app.post('')
 //GET /numbers should return comma separated list of numbers
 //DELETE /numbers should empty numbers array
 //GET /numbers/:op should return result of given operation of stored numbers (check request.params)

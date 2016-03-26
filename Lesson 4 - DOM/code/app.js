@@ -1,44 +1,26 @@
 window.addEventListener('DOMContentLoaded', function () {
-    //When the page structure is loaded...
-
-    var weightSpan = document.querySelector('.weight span'),
-        weightInput = document.querySelector('.weight input'),
-        heightSpan = document.querySelector('.height span'),
-        heightInput = document.querySelector('.height input'),
-        bmiSpan = document.querySelector('h1 span');
-
-    function updateBmi() {
-        var weight = weightInput.value,
-            height = (+heightSpan.textContent) / 100;
-
-        var result = weight / Math.pow(height, 2);
-
-        bmiSpan.textContent = result.toFixed(2);
-
-        bmiSpan.className = '';
-        if (result < 17 || result > 30) {
-            bmiSpan.classList.add('bad');
-        } else if (result < 19 || result > 25) {
-            bmiSpan.classList.add('medium');
-        } else {
-            bmiSpan.classList.add('ok');
-        }
+     //When the page structure is loaded...
+    var even = document.getElementById('evennumber');
+    var odd = document.getElementById('oddnumber');
+    var sub = document.getElementById('submit');
+    
+  sub.addEventListener('click', function() {
+    var oddV = odd.value; 
+    var evenV = even.value;
+ 
+    if (oddV%2 == 1) { 
+        odd.classList.remove('invalid');
+        odd.classList.add('valid');
+    } else {
+        odd.classList.remove('valid');
+        odd.classList.add('invalid');
     }
-
-    function updateWeight(event) {
-        weightSpan.textContent = weightInput.value;
-
-        updateBmi();
+    if (evenV%2 == 0) { 
+        even.classList.remove('invalid');
+        even.classList.add('valid');
+    } else {
+        even.classList.remove('valid');
+        even.classList.add('invalid');
     }
-
-    function updateHeight(event) {
-        heightSpan.textContent = heightInput.value;
-
-        updateBmi();
-    }
-
-    updateBmi();
-
-    weightInput.addEventListener('input', updateWeight);
-    heightInput.addEventListener('input', updateHeight);
-});
+    });
+ });
